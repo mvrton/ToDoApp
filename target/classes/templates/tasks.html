@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fondo oscuro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #f8f8f2; /* Texto blanco */
+        }
+    
+        h1 {
+            color: #ff79c6; /* Rosa */
+            margin: 20px 0;
+        }
+    
+        .task-container {
+            width: 100%;
+            max-width: 500px;
+            background: #282a36; /* Fondo gris oscuro */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+        }
+    
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    
+        .task-list li {
+            background: #44475a; /* Fondo gris intermedio */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    
+        .task-list li .task-name {
+            font-size: 16px;
+            color: #ff79c6; /* Rosa */
+            flex-grow: 1;
+        }
+    
+        .task-list li .task-status {
+            font-size: 14px;
+            color: #bd93f9; /* Púrpura */
+            font-style: italic;
+            margin-right: 20px;
+        }
+    
+        .task-list li button {
+            background-color: #ff79c6; /* Rosa */
+            color: #121212; /* Texto negro */
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+    
+        .task-list li button:hover {
+            background-color: #ff4a8d; /* Rosa intenso */
+        }
+    
+        .add-task-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .add-task-container input[type="text"] {
+            width: 93%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #44475a;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            background-color: #282a36;
+            color: #f8f8f2;
+        }
+    
+        .add-task-container button {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            background-color: #ff79c6;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    
+        .add-task-container button:hover {
+            background-color: #ff4a8d;
+        }
+    
+        .no-tasks {
+            text-align: center;
+            font-size: 14px;
+            color: #bd93f9;
+        }
+    
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    
+        .pagination a {
+            text-decoration: none;
+            background-color: #ff79c6;
+            color: #121212;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    
+        .pagination a:hover {
+            background-color: #ff4a8d;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+
+    <div class="task-container">
+        
+        <ul class="task-list">
+            <li th:each="task : ${tasks}">
+                <span class="task-name" th:text="${task.name}">¡Escribe la tarea!</span>
+                <span class="task-status" th:text="${task.completed ? 'Completada' : 'Pendiente'}">Estado</span>
+                
+                <a th:if="${!task.completed}" th:href="@{/tasks/complete/{id}(id=${task.id})}">
+                    <button>Marcar como completada</button>
+                </a>
+    
+                <a th:if="${task.completed}" th:href="@{/tasks/uncomplete/{id}(id=${task.id})}">
+                    <button>Desmarcar como completada</button>
+                </a>
+    
+                <a th:href="@{/tasks/delete/{id}(id=${task.id})}">
+                    <button>Eliminar</button>
+                </a>
+    
+                <a th:href="@{/tasks/edit/{id}(id=${task.id})}">
+                    <button>Editar</button>
+                </a>
+            </li>
+        </ul>
+    
+        <p class="no-tasks" th:if="${#lists.isEmpty(tasks)}">No hay tareas disponibles.</p>
+    </div>
+    
+    <div class="add-task-container">
+        <form th:action="@{/tasks}" method="post">
+            <input type="text" id="taskName" name="name" placeholder="Nombre de la tarea" required>
+            <button type="submit">Añadir Tarea</button>
+        </form>
+    </div>
+
+    <div class="pagination">
+        <a th:href="@{/tasks/view(page=${currentPage - 1})}" th:if="${currentPage > 0}">Anterior</a>
+        <span>Página <span th:text="${currentPage + 1}"></span></span>
+        <a th:href="@{/tasks/view(page=${currentPage + 1})}" th:if="${tasks.size() == 5}">Siguiente</a>
+    </div>
+
+</body>
+</html>

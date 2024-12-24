@@ -1,0 +1,7 @@
+com\martin\todolist\model\Task.class
+com\martin\todolist\service\TaskService.class
+com\martin\todolist\ToDoAppApplication.class
+com\martin\todolist\exception\GlobalExceptionHandler.class
+com\martin\todolist\exception\TaskNotFoundException.class
+com\martin\todolist\repository\TaskRepository.class
+com\martin\todolist\controller\TaskController.class
