@@ -41,7 +41,7 @@ public class TaskControllerTest {
         when(taskService.getTasksPage(0, 5)).thenReturn(taskPage);
 
         // Realizar la solicitud GET y verificar el estado 200 OK
-        mockMvc.perform(get("/tasks"))
-                .andExpect(status().isOk());  // Verifica que el código de estado sea 200 (OK)
+        mockMvc.perform(get("/tasks/view"))
+        .andExpect(status().isOk()); // Verifica que el código de estado sea 200 (OK)
     }
 }
