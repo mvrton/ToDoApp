@@ -1,7 +1,7 @@
 # Usamos una imagen de OpenJDK base
 FROM openjdk:17-jdk-slim
 
-# Instalar Maven
+# Instalamos Maven
 RUN apt-get update && apt-get install -y maven
 
 # Establecemos el directorio de trabajo
@@ -19,8 +19,11 @@ COPY src ./src
 # Construir el JAR del proyecto
 RUN mvn clean package
 
+# Listamos los archivos en el directorio target para asegurarnos que el JAR está allí
+RUN ls -al target/
+
 # Exponer el puerto que usará la aplicación
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación (ajustar si es necesario)
+# Comando para ejecutar la aplicación
 CMD ["java", "-jar", "target/ToDoApp-0.0.1-SNAPSHOT.jar"]
