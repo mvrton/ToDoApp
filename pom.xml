@@ -53,13 +53,11 @@
         </dependency>
 
         <!-- PostgreSQL Driver -->
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.6.0</version> <!-- O la última versión disponible -->
-    <scope>runtime</scope>
-</dependency>
-
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- Spring Boot DevTools (para desarrollo) -->
         <dependency>
