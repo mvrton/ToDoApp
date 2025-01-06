@@ -4,6 +4,10 @@ services:
     env: ubuntu
     buildCommand: |
       apt-get update
-      apt-get install -y maven
+      apt-get install -y wget
+      wget https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
+      tar -xvzf apache-maven-3.8.8-bin.tar.gz
+      mv apache-maven-3.8.8 /opt/maven
+      export PATH=$PATH:/opt/maven/bin
       mvn clean install
     startCommand: java -jar target/ToDoApp-0.0.1-SNAPSHOT.jar
