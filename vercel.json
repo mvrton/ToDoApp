@@ -2,11 +2,8 @@
     "version": 2,
     "builds": [
       {
-        "src": "pom.xml",
-        "use": "@vercel/java"
+        "src": "Dockerfile",
+        "use": "@vercel/docker"
       }
-    ],
-    "env": {
-      "MAVEN_VERSION": "3.8.6"
-    }
+    ]
   }
