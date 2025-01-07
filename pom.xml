@@ -15,24 +15,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>ToDoApp</name>
     <description>Proyecto de aplicación para gestionar tareas</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-
+    
     <properties>
         <java.version>17</java.version>
     </properties>
-
+    
     <dependencies>
         <!-- Spring Boot Data JPA -->
         <dependency>
@@ -52,6 +39,17 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        
+        <!-- Spring boot Security Test-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- PostgreSQL Driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -65,7 +63,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
-
+        
         <!-- Spring Boot Starter Test (para pruebas) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -73,6 +71,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    
 
     <build>
         <plugins>

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Tareas</title>
+    <title>Lista de tareas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212; /* Fondo oscuro */
+            background-color: #121212;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #f8f8f2; /* Texto blanco */
+            color: #f8f8f2;
         }
     
         h1 {
-            color: #ff79c6; /* Rosa */
+            color: #ff79c6;
             margin: 20px 0;
         }
     
         .task-container {
             width: 100%;
             max-width: 500px;
-            background: #282a36; /* Fondo gris oscuro */
+            background: #282a36;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
             padding: 20px;
@@ -35,7 +35,7 @@
         }
     
         .task-list li {
-            background: #44475a; /* Fondo gris intermedio */
+            background: #44475a;
             margin: 10px 0;
             padding: 15px;
             border-radius: 8px;
@@ -47,20 +47,20 @@
     
         .task-list li .task-name {
             font-size: 16px;
-            color: #ff79c6; /* Rosa */
+            color: #ff79c6;
             flex-grow: 1;
         }
     
         .task-list li .task-status {
             font-size: 14px;
-            color: #bd93f9; /* Púrpura */
+            color: #bd93f9;
             font-style: italic;
             margin-right: 20px;
         }
     
         .task-list li button {
-            background-color: #ff79c6; /* Rosa */
-            color: #121212; /* Texto negro */
+            background-color: #ff79c6;
+            color: #121212;
             border: none;
             border-radius: 5px;
             padding: 5px 10px;
@@ -70,7 +70,7 @@
         }
     
         .task-list li button:hover {
-            background-color: #ff4a8d; /* Rosa intenso */
+            background-color: #ff4a8d;
         }
     
         .add-task-container {
@@ -170,7 +170,7 @@
     <div class="add-task-container">
         <form th:action="@{/tasks}" method="post">
             <input type="text" id="taskName" name="name" placeholder="Nombre de la tarea" required>
-            <button type="submit">Añadir Tarea</button>
+            <button type="submit">Añadir tarea</button>
         </form>
     </div>
 

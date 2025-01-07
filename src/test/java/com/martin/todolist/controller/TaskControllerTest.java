@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.test.context.support.WithMockUser;  // Asegúrate de importar esta clase
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,9 +27,11 @@ public class TaskControllerTest {
     @MockBean
     private TaskService taskService;
 
+
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Test
     public void testGetAllTasks() throws Exception {
-        // Crear una tarea de ejemplo
+
         Task task = new Task();
         task.setId(1L);
         task.setName("Test Task");
@@ -42,6 +45,6 @@ public class TaskControllerTest {
 
         // Realizar la solicitud GET y verificar el estado 200 OK
         mockMvc.perform(get("/tasks/view"))
-        .andExpect(status().isOk()); // Verifica que el código de estado sea 200 (OK)
+            .andExpect(status().isOk()); // Verifica que el código de estado sea 200 (OK)
     }
 }

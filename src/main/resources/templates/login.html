@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Iniciar sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f8f8f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #ff79c6;
+        }
+
+        .form-container {
+            background: #282a36;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="password"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #44475a;
+            border-radius: 5px;
+            background-color: #282a36;
+            color: #f8f8f2;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #ff79c6;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ff4a8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Iniciar sesión</h1>
+    <div class="form-container">
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="Nombre de usuario" required />
+            <input type="password" name="password" placeholder="Contraseña" required />
+            <button type="submit">Entrar</button>
+        </form>
+        
+    </div>
+</body>
+</html>

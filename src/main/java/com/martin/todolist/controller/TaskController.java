@@ -22,6 +22,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    // Obtener tareas del usuario autenticado
     @GetMapping("/tasks/view")
     public String getTasks(@RequestParam(defaultValue = "0") int page, Model model) {
         Page<Task> taskPage = taskService.getTasksPage(page, 5);
@@ -31,6 +32,7 @@ public class TaskController {
         return "tasks";
     }
 
+    // Crear tarea
     @PostMapping("/tasks")
     public String createTask(@RequestParam String name) {
         Task task = new Task();
@@ -41,20 +43,21 @@ public class TaskController {
         return "redirect:/tasks/view";
     }
 
-    //Tarea completada
+    // Marcar tarea como completada
     @GetMapping("/tasks/complete/{id}")
     public String completeTask(@PathVariable Long id) {
         taskService.completeTask(id);
         return "redirect:/tasks/view";
     }
 
-    //Tarea descompletada
+    // Marcar tarea como no completada
     @GetMapping("/tasks/uncomplete/{id}")
     public String uncompleteTask(@PathVariable Long id) {
         taskService.uncompleteTask(id);
         return "redirect:/tasks/view";
     }
 
+    // Eliminar tarea
     @GetMapping("/tasks/delete/{id}")
     public String deleteTask(@PathVariable Long id, @RequestParam(defaultValue = "0") int page) {
         taskService.deleteTask(id);
@@ -65,8 +68,9 @@ public class TaskController {
         }
 
         return "redirect:/tasks/view?page=" + page;
-}
+    }
 
+    // Editar tarea
     @GetMapping("/tasks/edit/{id}")
     public String editTaskForm(@PathVariable Long id, @RequestParam(defaultValue = "0") int page, Model model) {
         Task task = taskService.getTaskById(id)
@@ -74,12 +78,12 @@ public class TaskController {
         model.addAttribute("task", task);
         model.addAttribute("currentPage", page);
         return "edit_task";
-}
+    }
 
+    // Actualizar tarea
     @PostMapping("/tasks/update")
     public String updateTask(@RequestParam Long id, @RequestParam String name, @RequestParam(defaultValue = "0") int page) {
             taskService.updateTask(id, name);
             return "redirect:/tasks/view?page=" + page;
-        }
-
+    }
 }
